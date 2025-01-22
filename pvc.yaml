@@ -10,6 +10,7 @@ spec:
     requests:
       storage: 5Gi # size, eg 5Gi or 100Mi
   volumeMode: Filesystem # the default
+  storageClassName: rbd-storagepool-cluster # kinda like where to actually store it, atm it's this
   accessModes:
     - ReadWriteOnce
     # other modes include:
