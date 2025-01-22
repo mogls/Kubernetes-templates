@@ -12,7 +12,7 @@ spec:
     targetPort: <port-name> | <port> # described in the service, preferably <port-name> 
   to:
     kind: Service
-    name: <service-name> # defined in metadata: name:, often = <deployment-name>
+    name: <deployment-name> # defined in metadata: name:, often = <deployment-name>
   # does smt, idrc
   tls:
     termination: edge
