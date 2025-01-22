@@ -13,7 +13,10 @@ spec:
   to:
     kind: Service
     name: <deployment-name> # defined in metadata: name:, often = <deployment-name>
-  # does smt, idrc
+  # Transport Layer Security (tls)
+  # in this context:
+  # edge: only happens on the frontend, unnecessary for backend
+  # Redirect: redirects HTTP to HTTPS
   tls:
     termination: edge
     insecureEdgeTerminationPolicy: Redirect
