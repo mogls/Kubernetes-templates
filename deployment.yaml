@@ -45,8 +45,8 @@ spec:
           volumeMounts: # mount the volume
             - name: <volume-name>
               mountPath: <container-mount-path> # e.g. /var/lib/mysql
-        volumes: # specify the volume
-          - name: <volume-name>
-            persistentVolumeClaim:
-              claimName: <claim-name>
+      volumes: # specify the volume
+        - name: <volume-name>
+          persistentVolumeClaim:
+            claimName: <claim-name>
 
