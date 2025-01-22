@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: <deployment-name> # not neccesarily deployment, but it's better if so
+  labels:
+    app: <deplayment-name>
+    sandbox: <sandbox-name>
+    <sandbox-name>: <group-name>
+spec:
+  # ClusterIP for internal, e.g. Route, backend
+  # NodePort for direct external
+  type: ClusterIP
+  ports:
+  - name: <port-name> # usually <port>-<protocol>, e.g. 8080-tcp
+    port: <port> # should be the same as <container-port>
+    protocol: TCP
+    targetPort: <container-port>
+    # if NodePort
+    # nodePort: <node-port> # between 30000 and 32767, basically port of service
+  selector:
+    app: <deployment-name> # used to select the deployment this service supports
+  # None or ClientIP.
+  # If ClientIP, same ip -> same pod
+  # None default
+  sessionAffinity: None
+

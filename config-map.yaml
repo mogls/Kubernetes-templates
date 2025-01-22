@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: <config-map-name>
+  labels:
+    sandbox: <sandbox-name>
+    <sandbox-name>: <group-name>
+data:
+  <key-name>: <key-value> # if requires number as string, do "num"
+

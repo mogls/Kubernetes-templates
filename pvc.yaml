@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: <claim-name>
+  labels:
+    sandbox: <sandbox-name>
+    <sandbox-name>: <group-name>
+spec:
+  resources:
+    requests:
+      storage: 5Gi # size, eg 5Gi or 100Mi
+  volumeMode: Filesystem # the default
+  accessModes:
+    - ReadWriteOnce
+    # other modes include:
+    # ReadWriteOnce (only one at a time)
+    # ReadOnlyMany (multiple pods)
+    # ReadWriteMany (multiple pods)
+

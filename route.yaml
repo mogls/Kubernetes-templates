@@ -1,0 +1,20 @@
+apiVersion: route.openshift.io/v1 # if using openshift
+kind: Route
+metadata:
+  # same nuances as in service  
+  name: <deployment-name> 
+  labels:
+    app: <deplayment-name>
+    sandbox: <sandbox-name>
+    <sandbox-name>: <group-name>
+spec:
+  port:
+    targetPort: <port-name> | <port> # described in the service, preferably <port-name> 
+  to:
+    kind: Service
+    name: <service-name> # defined in metadata: name:, often = <deployment-name>
+  # does smt, idrc
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+

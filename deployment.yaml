@@ -1,0 +1,52 @@
+# use: :%s/<to-replace>/<replacement>/g (substitute, data, global)
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: <deployment-name>
+  labels:
+    app: <deplayment-name>
+    sandbox: <sandbox-name>
+    <sandbox-name>: <group-name>
+spec:
+  replicas: 1 # number of initial pods
+  selector:
+    matchLabels:
+      app: <deployment-name> # can be different from one in metadata, but idealy the same
+  template:
+    metadata:
+      labels:
+        app: <deployment-name> # hast to be same as in selector i think 
+    spec:
+      containers:
+        - name: <deployment-name> # can be different from app, but shouldn't be 
+          image: <image-name>:<version> 
+          imagePullPolicy: Always # when it should pull the image or use a local one
+          # imagePullPolicy can be: Always, Never, IfNotPresent
+          ports:
+            - containerPort: <port> # local container port to be exposed 
+              protocol: TCP 
+          env:
+            - name: <ENV_VAR_NAME> # name in container
+              valueFrom:
+                configMapRef: # if from config map
+                  name: <config-map-name>
+                  key: <key-name>  
+            - name: <ENV_VAR_NAME>
+              valueFrom:
+                secretKeyRef: # if from secret
+                  name: <secret-name>
+                  key: <key-name>
+
+          resources:
+            limits:
+              memory: "<max-memory>" # eg in Mi or Gi
+              # 1000m = 1 CPU Core, alternatively 1, 0.5 etc. work as well
+              cpu: "<nuber-of-cores>"
+          volumeMounts: # mount the volume
+            - name: <volume-name>
+              mountPath: <container-mount-path> # e.g. /var/lib/mysql
+        volumes: # specify the volume
+          - name: <volume-name>
+            persistentVolumeClaim:
+              claimName: <claim-name>
+
