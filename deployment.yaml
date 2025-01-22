@@ -4,7 +4,7 @@ apiVersion: apps/v1
 metadata:
   name: <deployment-name>
   labels:
-    app: <deplayment-name>
+    app: <deployment-name>
     sandbox: <sandbox-name>
     <sandbox-name>: <group-name>
 spec:
